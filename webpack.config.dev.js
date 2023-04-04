@@ -2,9 +2,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const terserplugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+
 
 
 module.exports = {
@@ -80,5 +79,18 @@ module.exports = {
         }),
         new Dotenv(),
     ],
+    devServer: {
+        static: 
+        {
+            directory: path.join(__dirname, "dist"),
+            watch: true,
+        },
+        watchFiles: path.join(__dirname, "./**"), //observa los cambios en todos nuestros archivos y actualiza el navegador
+        compress: true,
+        historyApiFallback: true,
+        port: 3000,
+        open: true, //Hace que se abra en el navegador
+        
+    },
 }
-    
+
